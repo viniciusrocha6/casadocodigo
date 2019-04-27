@@ -6,7 +6,6 @@
 <c:url value="/" var="contextPath" />
 
 	<header id="layout-header">
-	
 		<div class="clearfix container">
 			<a href="${contextPath}" id="logo"> </a>
 			<div id="header-content">
@@ -14,7 +13,8 @@
 					<ul class="nav navbar-nav navbar-left">
 					<security:authorize access="hasRole('ROLE_ADMIN')">
 						<li><a href="${s:mvcUrl('PC#listar').build() }" rel="nofollow"><fmt:message key="menu.lista_produtos"/></a></li>
-						<li><a href="${s:mvcUrl('PC#form').build() }" rel="nofollow"><fmt:message key="menu.cadastro_produtos"/></a></li>
+						<li><a href="${s:mvcUrl('PSC#listaPedidos').build() }" rel="nofollow"><fmt:message key="menu.pedidos"/></a></li>
+						<li><a href="${s:mvcUrl('UC#listaUsuario').build() }" rel="nofollow"><fmt:message key="menu.lista_usuario"/></a></li>
 					</security:authorize>
 						<li>
 							<a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">
