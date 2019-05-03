@@ -111,8 +111,15 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", senha=" + senha + ", nome=" + nome + ", senhaConfere=" + senhaConfere
-				+ "]";
+		return "[email=" + email + ", senha=" + senha + ", nome=" + nome + ", senhaConfere=" + senhaConfere
+				+ ", roles=" + roles + "]";
 	}
+	
+
+//	@Override
+//	public String toString() {
+//		return "Usuario [email=" + email + ", senha=" + senha + ", nome=" + nome + ", senhaConfere=" + senhaConfere
+//				+ "]";
+//	}
 
 }

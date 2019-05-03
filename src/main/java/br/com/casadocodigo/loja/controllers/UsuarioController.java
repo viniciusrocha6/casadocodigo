@@ -1,6 +1,5 @@
 package br.com.casadocodigo.loja.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -72,23 +71,19 @@ public class UsuarioController {
 	public ModelAndView rolesAlterar(String email) {
 		Usuario usuario = usuarioDAO.find(email);
 		List<Role> roleList = roleDAO.roleList();
-		List<String> roles = new ArrayList<String>();
-		
-		for (Role role : roleList) {
-			roles.add(role.getNome());
-		}
+
 		ModelAndView modelAndView = new ModelAndView("usuario/roles");
 
-		System.out.println(usuario);
 		modelAndView.addObject("usuario", usuario);
-		modelAndView.addObject("roles", roles);
+		modelAndView.addObject("roles", roleList);
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/roles", method = RequestMethod.POST)
 	public ModelAndView rolesUpdate(Usuario usuario, RedirectAttributes redirectAttributes) {
 
-		System.out.println(usuario);
+		usuarioDAO.atualiza(usuario);
+
 		redirectAttributes.addFlashAttribute("massage", "Roles alterada com sucesso!");
 
 		return new ModelAndView("redirect:/usuarios");

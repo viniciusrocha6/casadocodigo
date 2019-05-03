@@ -78,4 +78,10 @@ public class UsuarioDAO implements UserDetailsService {
 		TypedQuery<Usuario> typedQuery = manager.createQuery(query);
 		return typedQuery.getSingleResult();
 	}
+
+	public void atualiza(Usuario usuario) {
+		
+		System.out.println(usuario.toString());
+
+	}
 }

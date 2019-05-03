@@ -12,7 +12,8 @@
 		<form:form action="${s:mvcUrl('UC#rolesUpdate').build() }" method="post" commandName="usuario" >
 			<div class="form-group">
 			Permissoes:
-			<form:checkboxes items="${roles }" path="roles"/>
+			<form:checkboxes items="${roles }" path="roles" itemLabel="nome"  />
+			<input type="hidden" value="${usuario} " name="email">
 			<br><br>
 			<button type="submit">Atualizar</button>
 		</div>

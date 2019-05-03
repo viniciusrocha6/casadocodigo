@@ -23,8 +23,8 @@ public class RoleDAO {
 	public void gravar(Role role) {
 		manager.persist(role);
 	}
-	
-	public List<Role> roleList(){
+
+	public List<Role> roleList() {
 		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
 		CriteriaQuery<Role> query = criteriaBuilder.createQuery(Role.class);
 		query.from(Role.class);
