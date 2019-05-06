@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.casadocodigo.loja.dao.ProdutoDAO;
+import br.com.casadocodigo.loja.models.JSONObject;
 import br.com.casadocodigo.loja.models.Produto;
 
 @Controller
@@ -21,11 +22,17 @@ public class RelatorioProdutosController {
 
 	@RequestMapping(value = "/relatorio-produtos", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Produto> relatorioProdutos(@RequestParam(value = "data", required = false) String dataLancamento) throws ParseException {
+	public JSONObject relatorioProdutos(@RequestParam(value = "data", required = false) String dataLancamento)
+			throws ParseException {
 
 		System.out.println("Controller " + dataLancamento);
 		List<Produto> produtos = dao.findProdutos(dataLancamento);
-		return produtos;
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.setQuatidade(produtos.size());
+		jsonObject.setProdutos(produtos);
+
+		return jsonObject;
 	}
 
 }

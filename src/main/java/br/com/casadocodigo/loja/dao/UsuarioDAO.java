@@ -80,7 +80,7 @@ public class UsuarioDAO implements UserDetailsService {
 	}
 
 	public void atualiza(Usuario usuario) {
-		
+
 		System.out.println(usuario.toString());
 
 	}

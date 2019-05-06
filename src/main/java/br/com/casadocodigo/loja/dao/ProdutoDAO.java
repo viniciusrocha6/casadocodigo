@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -52,23 +51,21 @@ public class ProdutoDAO {
 	}
 
 	public List<Produto> findProdutos(String dataLancamento) throws ParseException {
-		System.out.println(dataLancamento);
 		CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
 		CriteriaQuery<Produto> query = criteriaBuilder.createQuery(Produto.class);
+		
 		Root<Produto> root = query.from(Produto.class);
 
-		if (dataLancamento!=null) {
+		if (dataLancamento != null) {
 
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Path<Calendar> dataPath = root.<Calendar>get("dataLancamento");
-
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = format.parse(dataLancamento);
 			Calendar cal = Calendar.getInstance();
-			cal.setTime(date);
+			cal.setTime(sdf.parse(dataLancamento));
 
 			Predicate predicate = criteriaBuilder.equal(dataPath, cal);
-
 			query.where(predicate);
+
 		}
 
 		TypedQuery<Produto> typedQuery = manager.createQuery(query);
